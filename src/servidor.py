@@ -1,17 +1,13 @@
 import socket
 from crypto_utils import *
 
-def generador_claves_rsa():
-    # Esta función deberá generar un par de claves RSA y retornarlas
-    pass
+def enviar_clave_publica(conn, public_key):
+    # Enviar la clave pública en un formato que el cliente pueda reconstruir
+    conn.sendall(str(public_key).encode())
 
 def recibir_mensaje_cifrado(conn):
-    # Función para recibir un mensaje cifrado del cliente
-    pass
-
-def descifrar_mensaje(private_key, mensaje_cifrado):
-    # Función para descifrar el mensaje usando la clave privada RSA
-    pass
+    mensaje_cifrado = conn.recv(4096)
+    return mensaje_cifrado
 
 def main():
     host = '127.0.0.1'
@@ -26,11 +22,11 @@ def main():
         try:
             with conn:
                 print('Generando par de claves RSA...')
-                public_key, private_key = generador_claves_rsa()
+                public_key, private_key = generar_clave_rsa()
                 enviar_clave_publica(conn, public_key)
 
                 mensaje_cifrado = recibir_mensaje_cifrado(conn)
-                mensaje_descifrado = descifrar_mensaje(private_key, mensaje_cifrado)
+                mensaje_descifrado = descifrar_rsa(mensaje_cifrado, private_key)
                 print("Mensaje recibido y descifrado:", mensaje_descifrado)
 
                 # Guardar el mensaje descifrado en un archivo

@@ -1,9 +1,15 @@
 import socket
 from crypto_utils import *
 
-def cifrar_mensaje(public_key, mensaje):
-    # Función para cifrar el mensaje usando la clave pública RSA
-    pass
+def recibir_clave_publica(conn):
+    # Asumiendo que la clave pública se envía en un formato que se pueda reconstruir
+    clave_publica_data = conn.recv(4096)
+    return eval(clave_publica_data.decode())
+
+def leer_y_cifrar_mensaje(public_key):
+    with open('./mensajes/mensajeentrada.txt', 'r') as f:
+        mensaje = f.read()
+    return cifrar_rsa(mensaje.encode('utf-8'), public_key)
 
 def main():
     host = "127.0.0.1"
@@ -15,8 +21,7 @@ def main():
         public_key = recibir_clave_publica(conn)
         print('Clave pública recibida del servidor.')
 
-        mensaje = 'Mensaje a cifrar'  # Este mensaje podría venir de un archivo 'mensajeentrada.txt'
-        mensaje_cifrado = cifrar_mensaje(public_key, mensaje)
+        mensaje_cifrado = leer_y_cifrar_mensaje(public_key)
         conn.sendall(mensaje_cifrado)
         print("Mensaje cifrado y enviado al servidor.")
 
