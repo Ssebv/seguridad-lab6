@@ -1,6 +1,6 @@
 # Cliente-Servidor RSA
 
-Se implementa un sistema cliente-servidor que utiliza el algoritmo RSA para la sincronización de claves públicas y privadas. El cliente cifra un mensaje utilizando la clave pública del servidor, y el servidor lo descifra usando su clave privada.
+Se implementa un sistema cliente-servidor que utiliza el algoritmo RSA para la sincronización de claves públicas. El cliente cifra un mensaje utilizando la clave pública del servidor, y el servidor lo descifra usando su clave privada.
 
 ## Estructura
 

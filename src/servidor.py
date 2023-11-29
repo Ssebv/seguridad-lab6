@@ -29,7 +29,7 @@ def main():
                 mensaje_descifrado = descifrar_rsa(mensaje_cifrado, private_key) # Descifrar mensaje
                 print("Mensaje recibido y descifrado:", mensaje_descifrado) # Imprimir mensaje descifrado
 
-                with open('mensajerecibido.txt', 'w') as f:
+                with open('./mensajes/mensajerecibido.txt', 'w') as f:
                     f.write(mensaje_descifrado)
 
         except Exception as e:

@@ -2,10 +2,10 @@ from Crypto.Util.number import getPrime, inverse
 import random
 
 def generar_clave_rsa(bits=2048):
-    # Implementar la generación de claves RSA.
-    # Deberás generar dos números primos grandes y calcular n = p * q y phi(n) = (p-1)(q-1).
+    # n = p * q y phi(n) = (p-1)(q-1).
     # Luego, elige e tal que 1 < e < phi(n) y mcd(e, phi(n)) = 1. d será el inverso multiplicativo de e módulo phi(n).
     # La clave pública será (e, n) y la clave privada (d, n).
+    
     # Paso 1: Generar dos primos p y q
     p = getPrime(bits // 2)
     q = getPrime(bits // 2)
